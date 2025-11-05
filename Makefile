@@ -1,12 +1,12 @@
-all: test demos
+all: testall
 
 test:
 	@go test
 
-demos: demos.testall
-
 demos.%:
 	@make -C demos/d01.convexhull $*
+
+testall: test demos.testall
 
 clean: demos.clean
 	@go clean
