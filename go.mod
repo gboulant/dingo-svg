@@ -1,3 +1,3 @@
 module github.com/gboulant/dingo-svg
 
-go 1.25.3
+go 1.24.3

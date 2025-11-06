@@ -60,6 +60,20 @@ func TestSketcher_Point(t *testing.T) {
 	s.Save("output.TestSketcher_Point.svg")
 }
 
+func TestSketcher_Polyline(t *testing.T) {
+	s := NewSketcher()
+
+	var points []struct{ X, Y float64 } = []struct{ X, Y float64 }{
+		{0.2, 0.2},
+		{0.3, 0.8},
+		{0.6, 0.6},
+		{0.8, 0.8},
+		{0.8, 0.2},
+	}
+	s.Polyline(points, true)
+	s.Save("output.TestSketcher_Polyline.svg")
+}
+
 func TestSketcher_Polygon(t *testing.T) {
 	s := NewSketcher()
 
@@ -71,7 +85,11 @@ func TestSketcher_Polygon(t *testing.T) {
 		{0.8, 0.2},
 	}
 	s.Polygon(points, true)
-	s.Save("output.TestSketcher_Polygon.svg")
+	s.Save("output.TestSketcher_PolygonFill.svg")
+
+	s.Clear()
+	s.Polygon(points, false)
+	s.Save("output.TestSketcher_PolygonVoid.svg")
 }
 
 func TestSketcher_Text(t *testing.T) {

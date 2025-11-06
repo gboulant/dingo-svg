@@ -6,12 +6,13 @@ import (
 )
 
 const (
-	headPattern = "<svg xmlns='http://www.w3.org/2000/svg' width='%d' height='%d'>"
-	linePattern = "<line x1='%.2f' y1='%.2f' x2='%.2f' y2='%.2f' style='%s'/>"
-	textPattern = "<text x='%.2f' y='%.2f' style='%s'>%s</text>"
-	rectPattern = "<rect x='%.2f' y='%.2f' width='%.2f' height='%.2f' style='%s'/>"
-	circPattern = "<circle cx='%.2f' cy='%.2f' r='%.2f' style='%s'/>"
-	footPattern = "</svg>"
+	headPattern  = "<svg xmlns='http://www.w3.org/2000/svg' width='%d' height='%d'>"
+	linePattern  = "<line x1='%.2f' y1='%.2f' x2='%.2f' y2='%.2f' style='%s'/>"
+	textPattern  = "<text x='%.2f' y='%.2f' style='%s'>%s</text>"
+	rectPattern  = "<rect x='%.2f' y='%.2f' width='%.2f' height='%.2f' style='%s'/>"
+	circPattern  = "<circle cx='%.2f' cy='%.2f' r='%.2f' style='%s'/>"
+	polygPattern = "<polygon points='%s' style='%s'/>"
+	footPattern  = "</svg>"
 )
 
 // ===========================================================================
@@ -64,7 +65,7 @@ type Pencil struct {
 	LineColor string
 	LineWidth int
 	FillColor string
-	Fill      bool
+	FillMode  bool // if true, fill any closed shape with the FillColor color
 
 	// Parameters for the text
 	FontFamily string
@@ -78,7 +79,7 @@ func NewPencil(linecolor string, linewidth int) *Pencil {
 		LineColor:  linecolor,
 		LineWidth:  linewidth,
 		FillColor:  linecolor,
-		Fill:       true,
+		FillMode:   true,
 		FontFamily: defaultFontFamily,
 		FontWeight: defaultFontWeight,
 		FontSize:   defaultFontSize,
@@ -86,12 +87,16 @@ func NewPencil(linecolor string, linewidth int) *Pencil {
 	}
 }
 
-func (p Pencil) DrawStyle() string {
+func (p Pencil) DrawStyleWithFillMode(fill bool) string {
 	fillcolor := p.FillColor
-	if !p.Fill {
+	if !fill {
 		fillcolor = "none"
 	}
 	return fmt.Sprintf(drawStylePattern, p.LineColor, p.LineWidth, fillcolor)
+}
+
+func (p Pencil) DrawStyle() string {
+	return p.DrawStyleWithFillMode(p.FillMode)
 }
 
 func (p Pencil) TextStyle() string {
@@ -186,10 +191,7 @@ func (s *Sketcher) LineTo(x, y float64) {
 func (s *Sketcher) Circle(cx, cy, r float64, fill bool) {
 	pcx, pcy := s.canvasCoordinates(cx, cy)
 	pr := s.canvasScaling(r)
-	fillvalue := s.Pencil.Fill
-	s.Pencil.Fill = fill
-	style := s.Pencil.DrawStyle()
-	s.Pencil.Fill = fillvalue
+	style := s.Pencil.DrawStyleWithFillMode(fill)
 	s.body += fmt.Sprintf(circPattern, pcx, pcy, pr, style) + "\n"
 	s.x = cx
 	s.y = cy
@@ -200,10 +202,30 @@ func (s *Sketcher) Point(x, y float64) {
 	s.Circle(x, y, r, true)
 }
 
-// Polygon draw a polygon, i.e. an ordered set of points related by edges.
-// The variable points is a list of point coordinates, each point
-// coordinates is a tuple (x,y).
-func (s *Sketcher) Polygon(points []struct{ X, Y float64 }, closed bool) {
+// Polygon draw a polygon, i.e. closed polyline defined by an ordered
+// set of points related by edges. The variable points is a list of
+// point coordinates, each point coordinates is a tuple (x,y).
+func (s *Sketcher) Polygon(points []struct{ X, Y float64 }, fill bool) {
+	var x, y float64
+	var coords string
+	for _, p := range points {
+		x, y = p.X, p.Y
+		px, py := s.canvasCoordinates(x, y)
+		coords += fmt.Sprintf("%.2f,%.2f ", px, py)
+	}
+	style := s.Pencil.DrawStyleWithFillMode(fill)
+	s.body += fmt.Sprintf(polygPattern, coords, style) + "\n"
+	s.x = x
+	s.y = y
+}
+
+// Polyline draws a continuous line made of multiple connected edges,
+// where the edges are straitgh lines connecting the given ordered set
+// of points. The variable points is a list of point coordinates, each
+// point coordinates is a tuple (x,y). If closed is true, then and edge
+// is added to connect the last point to the first, and then create a
+// closed polyline, i.e. a polygone
+func (s *Sketcher) Polyline(points []struct{ X, Y float64 }, closed bool) {
 	p := points[0]
 	s.MoveTo(p.X, p.Y)
 	for _, p = range points[1:] {
