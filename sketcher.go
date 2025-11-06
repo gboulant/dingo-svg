@@ -52,12 +52,13 @@ const (
 	// Constant for the drawing
 	defaultLineColor = "black"
 	defaultLineWidth = 2
-	defaultFillColor = defaultLineColor
+	defaultFillColor = "black"
+	defaultFillMode  = true
 	// Constant for the text
 	defaultFontFamily = "Arial"
 	defaultFontWeight = "normal"
 	defaultFontSize   = 20
-	defaultFontColor  = defaultLineColor
+	defaultFontColor  = "black"
 )
 
 type Pencil struct {
@@ -78,12 +79,12 @@ func NewPencil(linecolor string, linewidth int) *Pencil {
 	return &Pencil{
 		LineColor:  linecolor,
 		LineWidth:  linewidth,
-		FillColor:  linecolor,
-		FillMode:   true,
+		FillColor:  defaultFillColor,
+		FillMode:   defaultFillMode,
 		FontFamily: defaultFontFamily,
 		FontWeight: defaultFontWeight,
 		FontSize:   defaultFontSize,
-		FontColor:  linecolor,
+		FontColor:  defaultFontColor,
 	}
 }
 
@@ -220,9 +221,19 @@ func (s *Sketcher) Quadrangle(x1, y1, x2, y2, x3, y3, x4, y4 float64, fill bool)
 	px4, py4 := s.canvasCoordinates(x4, y4)
 	coords := fmt.Sprintf("%.2f,%.2f %.2f,%.2f %.2f,%.2f %.2f,%.2f", px1, py1, px2, py2, px3, py3, px4, py4)
 	style := s.Pencil.DrawStyleWithFillMode(fill)
-	s.body += fmt.Sprintf(polygPattern, coords, style) + "\n"
+	s.body += fmt.Sprintf(polygPattern, coords, style) + "\n" // this concatenation is time consuming
 	s.x = x4
 	s.y = y4
+}
+
+func (s *Sketcher) Rectangle(x, y, width, height float64, fill bool) {
+	px, py := s.canvasCoordinates(x, y)
+	pw := s.canvasScaling(width)
+	ph := s.canvasScaling(height)
+	style := s.Pencil.DrawStyleWithFillMode(fill)
+	s.body += fmt.Sprintf(rectPattern, px, py, pw, ph, style) + "\n" // this concatenation is time consuming
+	s.x = x
+	s.y = y
 }
 
 // Polygon draw a polygon, i.e. closed polyline defined by an ordered

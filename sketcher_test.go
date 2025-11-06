@@ -74,6 +74,43 @@ func TestSketcher_Polyline(t *testing.T) {
 	s.Save("output.TestSketcher_Polyline.svg")
 }
 
+func TestSketcher_BaseShapes(t *testing.T) {
+	s := NewSketcher()
+
+	x0, y0 := 0.1, 0.2
+	w, h := 0.4, 0.5
+
+	x, y := x0, y0
+	s.Triangle(x, y, x+w*0.5, y+h, x+w, y, false)
+	s.Text(x, y, "Triangle Vide")
+
+	x, y = x0+0.1, y0+0.1
+	s.Triangle(x, y, x+w*0.5, y+h, x+w, y, true)
+	s.Pencil.FontColor = "white"
+	s.Text(x, y, "Triangle Plein")
+
+	s.Pencil.LineColor = "red"
+	s.Pencil.FillColor = "blue"
+	x, y = x0+0.4, y0-0.1
+	s.Quadrangle(x, y, x+w*0.6, y+h*0.2, x+w*0.7, y+h*0.8, x, y+h, true)
+	s.Pencil.FontColor = s.Pencil.LineColor
+	s.Text(x, y, "Quadrangle Plein")
+
+	s.Pencil.LineColor = "green"
+	x, y = x0+0.5, y0
+	s.Quadrangle(x, y, x+w*0.6, y+h*0.2, x+w*0.7, y+h*0.8, x, y+h, false)
+	s.Pencil.FontColor = s.Pencil.LineColor
+	s.Text(x, y, "Quadrangle Vide")
+
+	s.Pencil.LineColor = "yellow"
+	x, y = x0+0.3, y0+0.7
+	s.Rectangle(x, y, w, h, false)
+	s.Pencil.FontColor = s.Pencil.LineColor
+	s.Text(x, y, "Rectangle Vide")
+
+	s.Save("output.TestSketcher_BaseShapes.svg")
+}
+
 func TestSketcher_Polygon(t *testing.T) {
 	s := NewSketcher()
 
