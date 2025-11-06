@@ -7,7 +7,7 @@ build:
 	@go build
 
 exec: build
-	@./d01.convexhull
+	@./d02.surface3d
 
 testall: test exec
 

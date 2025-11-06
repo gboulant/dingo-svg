@@ -136,7 +136,7 @@ func (s Sketcher) String() string {
 }
 
 func (s Sketcher) Save(svgpath string) error {
-	file, err := os.OpenFile(svgpath, os.O_CREATE|os.O_WRONLY, 0600)
+	file, err := os.OpenFile(svgpath, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0600)
 	if err != nil {
 		return err
 	}
@@ -200,6 +200,29 @@ func (s *Sketcher) Circle(cx, cy, r float64, fill bool) {
 func (s *Sketcher) Point(x, y float64) {
 	r := s.pointSize()
 	s.Circle(x, y, r, true)
+}
+
+func (s *Sketcher) Triangle(x1, y1, x2, y2, x3, y3 float64, fill bool) {
+	px1, py1 := s.canvasCoordinates(x1, y1)
+	px2, py2 := s.canvasCoordinates(x2, y2)
+	px3, py3 := s.canvasCoordinates(x3, y3)
+	coords := fmt.Sprintf("%.2f,%.2f %.2f,%.2f %.2f,%.2f", px1, py1, px2, py2, px3, py3)
+	style := s.Pencil.DrawStyleWithFillMode(fill)
+	s.body += fmt.Sprintf(polygPattern, coords, style) + "\n"
+	s.x = x3
+	s.y = y3
+}
+
+func (s *Sketcher) Quadrangle(x1, y1, x2, y2, x3, y3, x4, y4 float64, fill bool) {
+	px1, py1 := s.canvasCoordinates(x1, y1)
+	px2, py2 := s.canvasCoordinates(x2, y2)
+	px3, py3 := s.canvasCoordinates(x3, y3)
+	px4, py4 := s.canvasCoordinates(x4, y4)
+	coords := fmt.Sprintf("%.2f,%.2f %.2f,%.2f %.2f,%.2f %.2f,%.2f", px1, py1, px2, py2, px3, py3, px4, py4)
+	style := s.Pencil.DrawStyleWithFillMode(fill)
+	s.body += fmt.Sprintf(polygPattern, coords, style) + "\n"
+	s.x = x4
+	s.y = y4
 }
 
 // Polygon draw a polygon, i.e. closed polyline defined by an ordered
