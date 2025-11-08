@@ -178,3 +178,58 @@ func TestSketcher_PointWithLabel(t *testing.T) {
 
 	s.Save("output.TestSketcher_PointWithLabel.svg")
 }
+
+func TestSketcher_BottomLeftCoordinateSystem(t *testing.T) {
+	cnvwidth := DefaultCanvasWidth
+	cnvheight := DefaultCanvasHeight
+	xrange := 10.
+	cs := NewCoordSysBottomLeft(cnvwidth, cnvheight, xrange)
+	s := NewSketcher().WithCoordinateSystem(cs)
+
+	var points []struct{ X, Y float64 } = []struct{ X, Y float64 }{
+		{0.2, 0.2},
+		{0.3, 0.8},
+		{0.6, 0.6},
+		{0.8, 0.8},
+		{0.8, 0.2},
+	}
+	s.Polygon(points, true)
+
+	scaling := xrange
+	for i, p := range points {
+		points[i].X = scaling * p.X
+		points[i].Y = scaling * p.Y
+	}
+
+	s.Polygon(points, false)
+
+	s.Save("output.TestSketcher_BottomLeftCoordinateSystem.svg")
+}
+
+func TestSketcher_CenteredCoordinateSystem(t *testing.T) {
+	cnvwidth := DefaultCanvasWidth
+	cnvheight := DefaultCanvasHeight
+	xrange := 2. // define an xrange of 2 to range from -width to width
+	// the xrange is the range from the left boudary of the canvas to the right boundary
+	cs := NewCoordSysCentered(cnvwidth, cnvheight, xrange)
+	s := NewSketcher().WithCoordinateSystem(cs)
+
+	var points []struct{ X, Y float64 } = []struct{ X, Y float64 }{
+		{0.2, 0.2},
+		{0.3, 0.8},
+		{0.6, 0.6},
+		{0.8, 0.8},
+		{0.8, 0.2},
+	}
+	s.Polygon(points, true)
+
+	// Center symetry by Origin
+	for i, p := range points {
+		points[i].X = -1 * p.X
+		points[i].Y = -1 * p.Y
+	}
+
+	s.Polygon(points, false)
+
+	s.Save("output.TestSketcher_CenteredCoordinateSystem.svg")
+}

@@ -19,6 +19,8 @@ const (
 // Sketch builder
 // ===========================================================================
 
+var defaultCoordinateSystem = NewCoordinateSystem()
+
 type Sketcher struct {
 	x, y   float64
 	body   string
@@ -27,8 +29,13 @@ type Sketcher struct {
 }
 
 func NewSketcher() *Sketcher {
-	cs := NewCoordinateSystem()
+	cs := defaultCoordinateSystem
 	return &Sketcher{x: 0., y: 0, body: "", cs: cs, Pencil: defaultPencil.Clone()}
+}
+
+func (s *Sketcher) WithCoordinateSystem(cs *CoordinateSystem) *Sketcher {
+	s.cs = cs
+	return s
 }
 
 // --------------------------------------------------------------------

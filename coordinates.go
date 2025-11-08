@@ -1,5 +1,10 @@
 package svg
 
+import (
+	"fmt"
+	"math"
+)
+
 // ===========================================================================
 // Coordinates System
 // ===========================================================================
@@ -59,13 +64,11 @@ func o2s(inverse bool) (sign float64) {
 	return sign
 }
 
-func NewCoordSysBottomLeft(cnvwidth, cnvheight int, xrange float64) *CoordinateSystem {
+func newCoordSystemAtOrigin(cnvXorigin, cnvYorigin float64, cnvwidth, cnvheight int, xrange float64) *CoordinateSystem {
 	var xinverse bool = false // oriented as the canvas native orientation
 	var yinverse bool = true  // inverse of the canvas native orientation
 	xsign := o2s(xinverse)
 	ysign := o2s(yinverse)
-	xorigin := 0.0
-	yorigin := float64(cnvheight)
 
 	// we consider a user x axis form 0 to xrange, then the unit has a size in
 	// pixels equal to the canvas width divided by the xrange
@@ -76,18 +79,58 @@ func NewCoordSysBottomLeft(cnvwidth, cnvheight int, xrange float64) *CoordinateS
 	return &CoordinateSystem{
 		cnvxsize:   cnvwidth,
 		cnvysize:   cnvheight,
-		xorigin:    xorigin,
-		yorigin:    yorigin,
+		xorigin:    cnvXorigin,
+		yorigin:    cnvYorigin,
 		xsign:      xsign,
 		ysign:      ysign,
 		unit2pixel: unit2pixel,
 	}
 }
 
-func NewCoorSysCentered() *CoordinateSystem {
+// NewCoordSysBottomLeft creates a Coordinate System whose origin is at the
+// bottom left corner of the canvas, with y coordinates axis oriented bottom up
+// (inverse of the canvas native Y axis). The xrange is the range of x values
+// (xmax - xmin) from the left boundary of the canvas to the right boundary.
+func NewCoordSysBottomLeft(cnvwidth, cnvheight int, xrange float64) *CoordinateSystem {
+	cnvXorigin := 0.
+	cnvYorigin := float64(cnvheight)
+	return newCoordSystemAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
+}
+
+// NewCoordSysCentered creates a Coordinate System whose origin is at the center
+// point of the canvas, with y coordinates axis oriented bottom up (inverse of
+// the canvas native Y axis). The xrange is the range of x values (xmax - xmin)
+// from the left boundary of the canvas to the right boundary.
+func NewCoordSysCentered(cnvwidth, cnvheight int, xrange float64) *CoordinateSystem {
+	cnvXorigin := float64(cnvwidth) * 0.5
+	cnvYorigin := float64(cnvheight) * 0.5
+	return newCoordSystemAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
+}
+
+func NewCoordSysBoundedBy(points []struct{ X, Y float64 }, cnvwidth, cnvheight int) *CoordinateSystem {
+	xmin, ymin, xmax, ymax := boundingBox(points)
+	fmt.Println(xmin, ymin, xmax, ymax)
 	return nil
 }
 
-func NewCoordSysBounding() *CoordinateSystem {
-	return nil
+func boundingBox(points []struct{ X, Y float64 }) (xmin, ymin, xmax, ymax float64) {
+	xmin = math.Inf(+1)
+	xmax = math.Inf(-1)
+	ymin = math.Inf(+1)
+	ymax = math.Inf(-1)
+	for _, p := range points {
+		if p.X < xmin {
+			xmin = p.X
+		}
+		if p.X > xmax {
+			xmax = p.X
+		}
+		if p.Y < ymin {
+			ymin = p.Y
+		}
+		if p.Y > ymax {
+			ymax = p.Y
+		}
+	}
+	return xmin, ymin, xmax, ymax
 }
