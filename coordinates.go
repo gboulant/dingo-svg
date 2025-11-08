@@ -1,7 +1,6 @@
 package svg
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -107,10 +106,25 @@ func NewCoordSysCentered(cnvwidth, cnvheight int, xrange float64) *CoordinateSys
 	return newCoordSystemAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
 }
 
-func NewCoordSysBoundedBy(points []struct{ X, Y float64 }, cnvwidth, cnvheight int) *CoordinateSystem {
+func NewCoordSysWithRanges(cnvwidth int, xmin, ymin, xmax, ymax float64) *CoordinateSystem {
+	xrange := (xmax - xmin)
+	yrange := (ymax - ymin)
+	cnvheight := int((yrange / xrange) * float64(cnvwidth))
+
+	unit2pixel := float64(cnvwidth) / xrange
+	cnvXorigin := -xmin * unit2pixel
+	cnvYorigin := float64(cnvheight) + ymin*unit2pixel
+
+	return newCoordSystemAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
+}
+
+func NewCoordSysBoundedBy(cnvwidth int, points []struct{ X, Y float64 }, xoffset, yoffset float64) *CoordinateSystem {
 	xmin, ymin, xmax, ymax := boundingBox(points)
-	fmt.Println(xmin, ymin, xmax, ymax)
-	return nil
+	xmin = xmin - xoffset
+	xmax = xmax + xoffset
+	ymin = ymin - yoffset
+	ymax = ymax + yoffset
+	return NewCoordSysWithRanges(cnvwidth, xmin, ymin, xmax, ymax)
 }
 
 func boundingBox(points []struct{ X, Y float64 }) (xmin, ymin, xmax, ymax float64) {
