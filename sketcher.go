@@ -28,11 +28,11 @@ type Sketcher struct {
 
 func NewSketcher() *Sketcher {
 	cs := NewCoordinateSystem()
-	return &Sketcher{x: 0., y: 0, body: "", cs: cs, Pencil: defaultPencil}
+	return &Sketcher{x: 0., y: 0, body: "", cs: cs, Pencil: defaultPencil.Clone()}
 }
 
 // --------------------------------------------------------------------
-// Sketch management functions
+// Sketch export and display functions
 
 func (s Sketcher) ToSVG() string {
 	svg := fmt.Sprintf(headPattern, 600, 600) + "\n"
@@ -59,6 +59,9 @@ func (s Sketcher) Save(svgpath string) error {
 	return nil
 }
 
+// --------------------------------------------------------------------
+// Sketch management functions
+
 func (s *Sketcher) Clear() {
 	s.body = ""
 }
@@ -82,7 +85,7 @@ func (s Sketcher) pointSize() float64 {
 }
 
 // --------------------------------------------------------------------
-// Drawing functions
+// Turtle-like drawing functions
 
 func (s *Sketcher) MoveTo(x, y float64) {
 	s.x = x
@@ -98,6 +101,19 @@ func (s *Sketcher) LineTo(x, y float64) {
 	s.y = y
 }
 
+// --------------------------------------------------------------------
+// Function to create primitive shapes
+
+func (s *Sketcher) Point(x, y float64) {
+	r := s.pointSize()
+	s.Circle(x, y, r, true)
+}
+
+func (s *Sketcher) Edge(x1, y1, x2, y2 float64) {
+	s.MoveTo(x1, y1)
+	s.LineTo(x2, y2)
+}
+
 func (s *Sketcher) Circle(cx, cy, r float64, fill bool) {
 	pcx, pcy := s.canvasCoordinates(cx, cy)
 	pr := s.canvasScaling(r)
@@ -105,11 +121,6 @@ func (s *Sketcher) Circle(cx, cy, r float64, fill bool) {
 	s.body += fmt.Sprintf(circPattern, pcx, pcy, pr, style) + "\n"
 	s.x = cx
 	s.y = cy
-}
-
-func (s *Sketcher) Point(x, y float64) {
-	r := s.pointSize()
-	s.Circle(x, y, r, true)
 }
 
 func (s *Sketcher) Triangle(x1, y1, x2, y2, x3, y3 float64, fill bool) {
@@ -182,10 +193,8 @@ func (s *Sketcher) Polyline(points []struct{ X, Y float64 }, closed bool) {
 	s.y = p.Y
 }
 
-func (s *Sketcher) Edge(x1, y1, x2, y2 float64) {
-	s.MoveTo(x1, y1)
-	s.LineTo(x2, y2)
-}
+// --------------------------------------------------------------------
+// Write text functions
 
 func (s *Sketcher) Text(x, y float64, text string) {
 	px, py := s.canvasCoordinates(x, y)

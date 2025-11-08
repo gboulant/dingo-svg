@@ -67,4 +67,17 @@ func (p Pencil) TextStyle() string {
 	return fmt.Sprintf(textStylePattern, p.FontFamily, p.FontSize, p.FontWeight, p.FontColor)
 }
 
+func (p Pencil) Clone() *Pencil {
+	return &Pencil{
+		LineColor:  p.LineColor,
+		LineWidth:  p.LineWidth,
+		FillColor:  p.FillColor,
+		FillMode:   p.FillMode,
+		FontFamily: p.FontFamily,
+		FontWeight: p.FontWeight,
+		FontSize:   p.FontSize,
+		FontColor:  p.FontColor,
+	}
+}
+
 var defaultPencil *Pencil = NewPencil(defaultLineColor, defaultLineWidth)
