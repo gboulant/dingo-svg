@@ -19,18 +19,27 @@ const (
 // Sketch builder
 // ===========================================================================
 
+const (
+	NoColor                = "none"
+	Transparent            = NoColor
+	defaultBackgroundColor = Transparent
+)
+
 var defaultCoordinateSystem = NewCoordinateSystem()
 
 type Sketcher struct {
-	x, y   float64
-	body   string
-	cs     *CoordinateSystem
-	Pencil *Pencil
+	x, y            float64
+	body            string
+	cs              *CoordinateSystem
+	Pencil          *Pencil
+	backgroundColor string
 }
 
 func NewSketcher() *Sketcher {
-	cs := defaultCoordinateSystem
-	return &Sketcher{x: 0., y: 0, body: "", cs: cs, Pencil: defaultPencil.Clone()}
+	return &Sketcher{
+		x: 0., y: 0, body: "", cs: defaultCoordinateSystem,
+		Pencil: defaultPencil.Clone(), backgroundColor: defaultBackgroundColor,
+	}
 }
 
 func (s *Sketcher) WithCoordinateSystem(cs *CoordinateSystem) *Sketcher {
@@ -38,11 +47,27 @@ func (s *Sketcher) WithCoordinateSystem(cs *CoordinateSystem) *Sketcher {
 	return s
 }
 
+func (s *Sketcher) WithBackgroundColor(colorname string) *Sketcher {
+	s.backgroundColor = colorname
+	return s
+}
+
+func (s Sketcher) CoordinatesSystem() *CoordinateSystem {
+	return s.cs
+}
+
 // --------------------------------------------------------------------
 // Sketch export and display functions
 
 func (s Sketcher) ToSVG() string {
-	svg := fmt.Sprintf(headPattern, 600, 600) + "\n"
+	svg := fmt.Sprintf(headPattern, s.cs.cnvxsize, s.cs.cnvysize) + "\n"
+	if s.backgroundColor != Transparent {
+		// Add a full size rectangle as first element with fill color set to
+		// the background color (classical method for SVG background color)
+		svg += fmt.Sprintf(
+			"<rect width='%d' height='%d' fill='%s'/>\n",
+			s.cs.cnvxsize, s.cs.cnvysize, s.backgroundColor)
+	}
 	svg += s.body
 	svg += footPattern
 	return svg

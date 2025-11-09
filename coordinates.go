@@ -63,6 +63,66 @@ func (c CoordinateSystem) userCoordinates(px, py float64) (x, y float64) {
 	return x, y
 }
 
+// UserCoordinatesBoundaries returns the boundaries of the (cnvwidth x
+// cnvheight) canvas in user coordinates system: xmin, xmax, ymin, ymax. These
+// values depends on 1/ the size of the canvas and 2/ the user coordinates
+// system (placement of the origin, and length unit).
+//
+// It is be computed by retrieving the position of the top left corner and the
+// bottom rigth corner in the user coordinates system
+func (c CoordinateSystem) UserCoordinatesBoundaries() (xmin, xmax, ymin, ymax float64) {
+	c1x, c1y := c.userCoordinates(0, 0)
+	c2x, c2y := c.userCoordinates(float64(c.cnvxsize), float64(c.cnvysize))
+
+	if c1x < c2x {
+		xmin = c1x
+		xmax = c2x
+	} else {
+		xmin = c2x
+		xmax = c1x
+	}
+
+	if c1y < c2y {
+		ymin = c1y
+		ymax = c2y
+	} else {
+		ymin = c2y
+		ymax = c1y
+	}
+
+	return xmin, xmax, ymin, ymax
+}
+
+/*
+   def xyboundaries(self):
+       """Returns the boundaries of the (cnvwidth x cnvheight) canvas in
+       user coordinates system: xmin, xmax, ymin, ymax. These values
+       depends on 1/ the size of the canvas and 2/ the user coordinates
+       system (placement of the origin, and length unit).
+
+       It is be computed by retrieving the position of the top left
+       corner and the bottom rigth corner in the user coordinates
+       system"""
+       c1x, c1y = self.coordinatesSystem.xyCoordinates(0,0)
+       c2x, c2y = self.coordinatesSystem.xyCoordinates(self.cnvwidth, self.cnvheight)
+
+       if c1x < c2x:
+           xmin = c1x
+           xmax = c2x
+       else:
+           xmin = c2x
+           xmax = c1x
+
+       if c1y < c2y:
+           ymin = c1y
+           ymax = c2y
+       else:
+           ymin = c2y
+           ymax = c1y
+
+       return xmin, xmax, ymin, ymax
+*/
+
 // o2s return the sign to consider for the user axis orientation depending if
 // the user axis is oriented as the canvas native axis (inverse = false) or
 // inverse of the canvas native axis (inverse = true). If inverse is true, then

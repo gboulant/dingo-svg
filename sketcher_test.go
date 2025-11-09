@@ -211,3 +211,15 @@ func TestSketcher_BoundedByCoordinateSystem(t *testing.T) {
 
 	s.Save("output.TestSketcher_BoundedByCoordinateSystem.svg")
 }
+
+func TestSketcher_WithBackgroundColor(t *testing.T) {
+	cnvwidth := DefaultCanvasWidth
+	cnvheight := DefaultCanvasHeight
+	xrange := 2. // define an xrange of 2 to range from -width to width
+	// the xrange is the range from the left boudary of the canvas to the right boundary
+	cs := NewCoordSysCentered(cnvwidth, cnvheight, xrange)
+	s := NewSketcher().WithCoordinateSystem(cs).WithBackgroundColor("orange")
+
+	s.Circle(0, 0, 0.3, true)
+	s.Save("output.TestSketcher_WithBackgroundColor.svg")
+}
