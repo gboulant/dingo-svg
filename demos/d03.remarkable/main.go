@@ -1,13 +1,24 @@
 package main
 
-import "log"
+import (
+	"fmt"
+)
+
+type catalog []struct {
+	name string
+	make func(svgpath string) error
+}
 
 func main() {
-	var demo func() error
+	var rMsketchers catalog = catalog{
+		{"rM_millimeters", rM_millimeters},
+		{"rM_ecolier", rM_ecolier},
+	}
 
-	demo = demo_rM_millimeters
-
-	if err := demo(); err != nil {
-		log.Fatal(err)
+	for _, sketcher := range rMsketchers {
+		svgpath := fmt.Sprintf("output.%s.svg", sketcher.name)
+		if err := sketcher.make(svgpath); err != nil {
+			fmt.Printf("err: sketcher %s failed du to error %s\n", sketcher.name, err)
+		}
 	}
 }

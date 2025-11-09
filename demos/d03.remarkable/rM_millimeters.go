@@ -2,7 +2,7 @@ package main
 
 import svg "github.com/gboulant/dingo-svg"
 
-func demo_rM_millimeters() error {
+func rM_millimeters(svgpath string) error {
 	s := NewRemarkableSketcher()
 
 	// Prepare the pencils
@@ -62,6 +62,5 @@ func demo_rM_millimeters() error {
 	s.Edge(xmargin, ymargin-1, xmargin+cellsize, ymargin-1)
 	s.Text(xmargin+3, ymargin-3, "1 cm")
 
-	s.Save("output.demo_rM_millimeters.svg")
-	return nil
+	return s.Save(svgpath)
 }

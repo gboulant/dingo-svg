@@ -185,6 +185,27 @@ func TestSketcher_CenteredCoordinateSystem(t *testing.T) {
 	s.Save("output.TestSketcher_CenteredCoordinateSystem.svg")
 }
 
+func TestSketcher_TopLeftCoordinateSystem(t *testing.T) {
+	cnvwidth := DefaultCanvasWidth
+	cnvheight := DefaultCanvasHeight
+	xrange := 10.
+	cs := NewCoordSysTopLeft(cnvwidth, cnvheight, xrange)
+	s := NewSketcher().WithCoordinateSystem(cs)
+
+	points := testpoints()
+	s.Polygon(points, true)
+
+	scaling := xrange
+	for i, p := range points {
+		points[i].X = scaling * p.X
+		points[i].Y = scaling * p.Y
+	}
+
+	s.Polygon(points, false)
+
+	s.Save("output.TestSketcher_TopLeftCoordinateSystem.svg")
+}
+
 func TestSketcher_BoundedByCoordinateSystem(t *testing.T) {
 	cnvwidth := DefaultCanvasWidth
 	points := testpoints()

@@ -93,36 +93,6 @@ func (c CoordinateSystem) UserCoordinatesBoundaries() (xmin, xmax, ymin, ymax fl
 	return xmin, xmax, ymin, ymax
 }
 
-/*
-   def xyboundaries(self):
-       """Returns the boundaries of the (cnvwidth x cnvheight) canvas in
-       user coordinates system: xmin, xmax, ymin, ymax. These values
-       depends on 1/ the size of the canvas and 2/ the user coordinates
-       system (placement of the origin, and length unit).
-
-       It is be computed by retrieving the position of the top left
-       corner and the bottom rigth corner in the user coordinates
-       system"""
-       c1x, c1y = self.coordinatesSystem.xyCoordinates(0,0)
-       c2x, c2y = self.coordinatesSystem.xyCoordinates(self.cnvwidth, self.cnvheight)
-
-       if c1x < c2x:
-           xmin = c1x
-           xmax = c2x
-       else:
-           xmin = c2x
-           xmax = c1x
-
-       if c1y < c2y:
-           ymin = c1y
-           ymax = c2y
-       else:
-           ymin = c2y
-           ymax = c1y
-
-       return xmin, xmax, ymin, ymax
-*/
-
 // o2s return the sign to consider for the user axis orientation depending if
 // the user axis is oriented as the canvas native axis (inverse = false) or
 // inverse of the canvas native axis (inverse = true). If inverse is true, then
@@ -136,9 +106,21 @@ func o2s(inverse bool) (sign float64) {
 	return sign
 }
 
-func newCoordSysAtOrigin(cnvXorigin, cnvYorigin float64, cnvwidth, cnvheight int, xrange float64) *CoordinateSystem {
-	var xinverse bool = false // oriented as the canvas native orientation
-	var yinverse bool = true  // inverse of the canvas native orientation
+// newCoordinatesSystem creates a coordinate systems with origin canvas location
+// at cnvXorigin, cnvYorigin (pixels) and axis orientations specified by
+// xinverse and yinverse. If x(y)inverse is false, then the axis x(y) is
+// oriented as the canvas native orientation. If false, the axis orientation is
+// the inverse of the canvas native orientation. The canvas native orientations
+// are: from left to right for the x axis, and from top to bottom (starting from
+// the top left corner) for the y axis. Then to have a coodinates systems with
+// the origin on the bottom left corner and y axis up-oriented, the parameters
+// should be: cnvXorigin=0, cnvYorigin=cnvheight, yinverse = true.
+func newCoordinatesSystem(
+	cnvXorigin, cnvYorigin float64,
+	cnvwidth, cnvheight int,
+	xinverse, yinverse bool,
+	xrange float64) *CoordinateSystem {
+
 	xsign := o2s(xinverse)
 	ysign := o2s(yinverse)
 
@@ -166,7 +148,13 @@ func newCoordSysAtOrigin(cnvXorigin, cnvYorigin float64, cnvwidth, cnvheight int
 func NewCoordSysBottomLeft(cnvwidth, cnvheight int, xrange float64) *CoordinateSystem {
 	cnvXorigin := 0.
 	cnvYorigin := float64(cnvheight)
-	return newCoordSysAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
+	xinverse := false // oriented as the canvas x native axis
+	yinverse := true  // inverse of the canvas y native axis
+	return newCoordinatesSystem(
+		cnvXorigin, cnvYorigin,
+		cnvwidth, cnvheight,
+		xinverse, yinverse,
+		xrange)
 }
 
 // NewCoordSysCentered creates a Coordinate System whose origin is at the center
@@ -176,43 +164,42 @@ func NewCoordSysBottomLeft(cnvwidth, cnvheight int, xrange float64) *CoordinateS
 func NewCoordSysCentered(cnvwidth, cnvheight int, xrange float64) *CoordinateSystem {
 	cnvXorigin := float64(cnvwidth) * 0.5
 	cnvYorigin := float64(cnvheight) * 0.5
-	return newCoordSysAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
+	xinverse := false // oriented as the canvas x native axis
+	yinverse := true  // inverse of the canvas y native axis
+	return newCoordinatesSystem(
+		cnvXorigin, cnvYorigin,
+		cnvwidth, cnvheight,
+		xinverse, yinverse,
+		xrange)
+}
+
+// NewCoordSysTopLeft creates a Coordinate System whose origin is at the top
+// left corner point of the canvas, with y coordinates axis oriented top down
+// (the canvas native Y axis orientation). The xrange is the range of x values
+// (xmax - xmin) from the left boundary of the canvas to the right boundary.
+func NewCoordSysTopLeft(cnvwidth, cnvheight int, xrange float64) *CoordinateSystem {
+	cnvXorigin := 0.
+	cnvYorigin := 0.
+	xinverse := false // oriented as the canvas x native axis
+	yinverse := false // oriented as the canvas y native axis
+	return newCoordinatesSystem(
+		cnvXorigin, cnvYorigin,
+		cnvwidth, cnvheight,
+		xinverse, yinverse,
+		xrange)
 }
 
 func NewCoordSysWithRanges(cnvwidth int, xmin, ymin, xmax, ymax float64) *CoordinateSystem {
-	// See the test TestCoordSys_ImplementationOfWithRanges for explanation of the
-	// two implementation, and the reason why we choose the second (the first
-	// should be considered as deprecated)
-	//return newCoordSysWithRanges_impl01(cnvwidth, xmin, ymin, xmax, ymax)
-	return newCoordSysWithRanges_impl02(cnvwidth, xmin, ymin, xmax, ymax)
-}
-
-func newCoordSysWithRanges_impl01(cnvwidth int, xmin, ymin, xmax, ymax float64) *CoordinateSystem {
 	xrange := (xmax - xmin)
 	yrange := (ymax - ymin)
 	cnvheight := int((yrange / xrange) * float64(cnvwidth))
-
-	unit2pixel := float64(cnvwidth) / xrange
-
-	xsign := +1.
-	ysign := -1.
-	pxOrigin := 0.
-	pyOrigin := float64(cnvheight)
-	cnvXorigin := pxOrigin - xsign*unit2pixel*xmin
-	cnvYorigin := pyOrigin - ysign*unit2pixel*ymin
-
-	return newCoordSysAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
-}
-
-func newCoordSysWithRanges_impl02(cnvwidth int, xmin, ymin, xmax, ymax float64) *CoordinateSystem {
-	xrange := (xmax - xmin)
-	yrange := (ymax - ymin)
-	cnvheight := int((yrange / xrange) * float64(cnvwidth))
+	xinverse := false // oriented as the canvas x native axis
+	yinverse := true  // inverse of the canvas y native axis
 
 	// Create first a Coorinates System with origin at (0,0), so that we can use
 	// the internal scaling functions of the coordinate system to reset
 	// correctly the origin
-	cs := newCoordSysAtOrigin(0, 0, cnvwidth, cnvheight, xrange)
+	cs := newCoordinatesSystem(0, 0, cnvwidth, cnvheight, xinverse, yinverse, xrange)
 
 	// Compute the pixel position of the point xmin,ymin in this coordinate system
 	pxmin, pymin := cs.canvasCoordinates(xmin, ymin)

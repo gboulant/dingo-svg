@@ -1,13 +1,12 @@
 package svg
 
 import (
-	"io"
 	"log"
 	"testing"
 )
 
 func init() {
-	log.SetOutput(io.Discard)
+	//log.SetOutput(io.Discard)
 }
 
 func testpoints() []struct{ X, Y float64 } {
@@ -60,6 +59,20 @@ func TestCoordSys_ChangeCoordinates(t *testing.T) {
 	}
 }
 
+func TestCoordSys_BoundingBox(t *testing.T) {
+	points := testpoints()
+	xmin, ymin, xmax, ymax := boundingBox(points)
+	xminr, yminr, xmaxr, ymaxr := 0.2, 0.2, 0.8, 0.8
+
+	if xmin != xminr || xmax != xmaxr || ymin != yminr || ymax != ymaxr {
+		t.Errorf(
+			"bounding box is %g,%g,%g,%g (should be %g,%g,%g,%g)",
+			xmin, ymin, xmax, ymax, xminr, yminr, xmaxr, ymaxr,
+		)
+	}
+
+}
+
 func TestCoordSys_ImplementationOfWithRanges(t *testing.T) {
 	points := testpoints()
 
@@ -83,8 +96,14 @@ func TestCoordSys_ImplementationOfWithRanges(t *testing.T) {
 	pyOrigin := float64(cnvheight)
 	cnvXorigin := pxOrigin - xsign*unit2pixel*xmin
 	cnvYorigin := pyOrigin - ysign*unit2pixel*ymin
+	xinverse := false // oriented as the canvas x native axis
+	yinverse := true  // inverse of the canvas y native axis
 
-	cs1 := newCoordSysAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
+	cs1 := newCoordinatesSystem(
+		cnvXorigin, cnvYorigin,
+		cnvwidth, cnvheight,
+		xinverse, yinverse, xrange)
+
 	pxmin, pymin := cs1.canvasCoordinates(xmin, ymin)
 	if pxmin != pxOrigin {
 		t.Errorf("pxmin is %.2f (should be %.2f)", pxmin, pxOrigin)
@@ -105,7 +124,7 @@ func TestCoordSys_ImplementationOfWithRanges(t *testing.T) {
 	// in creating first a Coorinates System with origin at (0,0), so that we
 	// can use the internal scaling functions of the coordinate system to reset
 	// correctly the origin.
-	cs2 := newCoordSysAtOrigin(0, 0, cnvwidth, cnvheight, xrange)
+	cs2 := newCoordinatesSystem(0, 0, cnvwidth, cnvheight, xinverse, yinverse, xrange)
 	// Compute the pixel position of the point xmin,ymin in this coordinate system
 	pxmin, pymin = cs2.canvasCoordinates(xmin, ymin)
 	// The real origin pixel position can be recomputed with
@@ -141,6 +160,31 @@ func TestCoordSysWithRanges(t *testing.T) {
 	}
 	if pymax != 0. {
 		t.Errorf("pymax is %.2f (should be %.2f)", pymax, 0.)
+	}
+
+}
+
+func TestCoordSysTopLeft(t *testing.T) {
+	cnvwidth := 100
+	cnvheight := 100
+
+	xrange := 4.
+	cs := NewCoordSysTopLeft(cnvwidth, cnvheight, xrange)
+
+	pxmin, pymin := cs.canvasCoordinates(0, 0)
+	if pxmin != 0. {
+		t.Errorf("pxmin is %.2f (should be %.2f)", pxmin, 0.)
+	}
+	if pymin != 0. {
+		t.Errorf("pymin is %.2f (should be %.2f)", pymin, 0.)
+	}
+
+	pxmax, pymax := cs.canvasCoordinates(4, 4)
+	if pxmax != float64(cnvwidth) {
+		t.Errorf("pxmax is %.2f (should be %.2f)", pxmax, float64(cnvwidth))
+	}
+	if pymax != float64(cnvheight) {
+		t.Errorf("pymax is %.2f (should be %.2f)", pymax, float64(cnvheight))
 	}
 
 }
