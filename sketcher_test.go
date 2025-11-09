@@ -1,6 +1,7 @@
 package svg
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -232,4 +233,37 @@ func TestSketcher_CenteredCoordinateSystem(t *testing.T) {
 	s.Polygon(points, false)
 
 	s.Save("output.TestSketcher_CenteredCoordinateSystem.svg")
+}
+
+func TestSketcher_BoundedByCoordinateSystem(t *testing.T) {
+	cnvwidth := DefaultCanvasWidth
+	var points []struct{ X, Y float64 } = []struct{ X, Y float64 }{
+		{0.2, 0.2},
+		{0.3, 0.8},
+		{0.6, 0.6},
+		{0.8, 0.8},
+		{0.8, 0.2},
+	}
+	// translate points
+	tx := 10.
+	ty := -5.
+	for i, p := range points {
+		points[i].X = p.X + tx
+		points[i].Y = p.Y + ty
+	}
+
+	xoffset := 0.05
+	yoffset := 0.05
+	cs := NewCoordSysBoundedBy(cnvwidth, points, xoffset, yoffset)
+	s := NewSketcher().WithCoordinateSystem(cs)
+
+	s.Polygon(points, false)
+
+	var label string
+	for i, p := range points {
+		label = fmt.Sprintf("p%d (%.2f, %.2f)", i, p.X, p.Y)
+		s.PointWithLabel(p.X, p.Y, label)
+	}
+
+	s.Save("output.TestSketcher_BoundedByCoordinateSystem.svg")
 }
