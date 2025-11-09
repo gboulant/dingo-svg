@@ -1,6 +1,7 @@
 package svg
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -21,6 +22,11 @@ type CoordinateSystem struct {
 	xsign      float64 // orientation of the X axis: -1 means from right to left
 	ysign      float64 // orientation of the Y axis: -1 means from bottom to top
 	unit2pixel float64 // number of pixels in a user unit (could be a float)
+}
+
+func (c CoordinateSystem) String() string {
+	return fmt.Sprintf("cnvsize: w=%d x h=%d, origin: Ox=%.2fpx Oy=%.2fpx",
+		c.cnvxsize, c.cnvysize, c.xorigin, c.yorigin)
 }
 
 // NewCoordinateSystem returns the default coordinates system. It is a
@@ -70,7 +76,7 @@ func o2s(inverse bool) (sign float64) {
 	return sign
 }
 
-func NewCoordSysAtOrigin(cnvXorigin, cnvYorigin float64, cnvwidth, cnvheight int, xrange float64) *CoordinateSystem {
+func newCoordSysAtOrigin(cnvXorigin, cnvYorigin float64, cnvwidth, cnvheight int, xrange float64) *CoordinateSystem {
 	var xinverse bool = false // oriented as the canvas native orientation
 	var yinverse bool = true  // inverse of the canvas native orientation
 	xsign := o2s(xinverse)
@@ -100,7 +106,7 @@ func NewCoordSysAtOrigin(cnvXorigin, cnvYorigin float64, cnvwidth, cnvheight int
 func NewCoordSysBottomLeft(cnvwidth, cnvheight int, xrange float64) *CoordinateSystem {
 	cnvXorigin := 0.
 	cnvYorigin := float64(cnvheight)
-	return NewCoordSysAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
+	return newCoordSysAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
 }
 
 // NewCoordSysCentered creates a Coordinate System whose origin is at the center
@@ -110,10 +116,18 @@ func NewCoordSysBottomLeft(cnvwidth, cnvheight int, xrange float64) *CoordinateS
 func NewCoordSysCentered(cnvwidth, cnvheight int, xrange float64) *CoordinateSystem {
 	cnvXorigin := float64(cnvwidth) * 0.5
 	cnvYorigin := float64(cnvheight) * 0.5
-	return NewCoordSysAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
+	return newCoordSysAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
 }
 
 func NewCoordSysWithRanges(cnvwidth int, xmin, ymin, xmax, ymax float64) *CoordinateSystem {
+	// See the test TestCoordSys_ImplementationOfWithRanges for explanation of the
+	// two implementation, and the reason why we choose the second (the first
+	// should be considered as deprecated)
+	//return newCoordSysWithRanges_impl01(cnvwidth, xmin, ymin, xmax, ymax)
+	return newCoordSysWithRanges_impl02(cnvwidth, xmin, ymin, xmax, ymax)
+}
+
+func newCoordSysWithRanges_impl01(cnvwidth int, xmin, ymin, xmax, ymax float64) *CoordinateSystem {
 	xrange := (xmax - xmin)
 	yrange := (ymax - ymin)
 	cnvheight := int((yrange / xrange) * float64(cnvwidth))
@@ -127,7 +141,33 @@ func NewCoordSysWithRanges(cnvwidth int, xmin, ymin, xmax, ymax float64) *Coordi
 	cnvXorigin := pxOrigin - xsign*unit2pixel*xmin
 	cnvYorigin := pyOrigin - ysign*unit2pixel*ymin
 
-	return NewCoordSysAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
+	return newCoordSysAtOrigin(cnvXorigin, cnvYorigin, cnvwidth, cnvheight, xrange)
+}
+
+func newCoordSysWithRanges_impl02(cnvwidth int, xmin, ymin, xmax, ymax float64) *CoordinateSystem {
+	xrange := (xmax - xmin)
+	yrange := (ymax - ymin)
+	cnvheight := int((yrange / xrange) * float64(cnvwidth))
+
+	// Create first a Coorinates System with origin at (0,0), so that we can use
+	// the internal scaling functions of the coordinate system to reset
+	// correctly the origin
+	cs := newCoordSysAtOrigin(0, 0, cnvwidth, cnvheight, xrange)
+
+	// Compute the pixel position of the point xmin,ymin in this coordinate system
+	pxmin, pymin := cs.canvasCoordinates(xmin, ymin)
+
+	// We can then determine the real origin pixel position with:
+	pxOrigin := 0.
+	pyOrigin := float64(cnvheight)
+	cnvXorigin := pxOrigin - pxmin
+	cnvYorigin := pyOrigin - pymin
+
+	// And finally reset the origin of the coordinate system to the good value
+	cs.xorigin = cnvXorigin
+	cs.yorigin = cnvYorigin
+
+	return cs
 }
 
 func NewCoordSysBoundedBy(cnvwidth int, points []struct{ X, Y float64 }, xoffset, yoffset float64) *CoordinateSystem {
