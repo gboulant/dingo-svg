@@ -1,19 +1,39 @@
 package svg
 
 import (
+	"io"
 	"log"
 	"testing"
 )
 
+func init() {
+	log.SetOutput(io.Discard)
+}
+
 func testpoints() []struct{ X, Y float64 } {
-	var points []struct{ X, Y float64 } = []struct{ X, Y float64 }{
+	return []struct{ X, Y float64 }{
 		{0.2, 0.2},
 		{0.3, 0.8},
 		{0.6, 0.6},
 		{0.8, 0.8},
 		{0.8, 0.2},
 	}
-	return points
+}
+
+func testpointsWithNames() []struct {
+	X, Y float64
+	name string
+} {
+	return []struct {
+		X, Y float64
+		name string
+	}{
+		{0.2, 0.2, "A"},
+		{0.3, 0.8, "B"},
+		{0.6, 0.6, "C"},
+		{0.8, 0.8, "D"},
+		{0.8, 0.2, "E"},
+	}
 }
 
 func TestCoordSys_ChangeCoordinates(t *testing.T) {

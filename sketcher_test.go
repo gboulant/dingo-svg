@@ -64,13 +64,7 @@ func TestSketcher_Point(t *testing.T) {
 func TestSketcher_Polyline(t *testing.T) {
 	s := NewSketcher()
 
-	var points []struct{ X, Y float64 } = []struct{ X, Y float64 }{
-		{0.2, 0.2},
-		{0.3, 0.8},
-		{0.6, 0.6},
-		{0.8, 0.8},
-		{0.8, 0.2},
-	}
+	points := testpoints()
 	s.Polyline(points, true)
 	s.Save("output.TestSketcher_Polyline.svg")
 }
@@ -115,13 +109,7 @@ func TestSketcher_BaseShapes(t *testing.T) {
 func TestSketcher_Polygon(t *testing.T) {
 	s := NewSketcher()
 
-	var points []struct{ X, Y float64 } = []struct{ X, Y float64 }{
-		{0.2, 0.2},
-		{0.3, 0.8},
-		{0.6, 0.6},
-		{0.8, 0.8},
-		{0.8, 0.2},
-	}
+	points := testpoints()
 	s.Polygon(points, true)
 	s.Save("output.TestSketcher_PolygonFill.svg")
 
@@ -133,20 +121,7 @@ func TestSketcher_Polygon(t *testing.T) {
 func TestSketcher_Text(t *testing.T) {
 	s := NewSketcher()
 
-	var points []struct {
-		X, Y float64
-		name string
-	} = []struct {
-		X, Y float64
-		name string
-	}{
-		{0.2, 0.2, "A"},
-		{0.3, 0.8, "B"},
-		{0.6, 0.6, "C"},
-		{0.8, 0.8, "D"},
-		{0.8, 0.2, "E"},
-	}
-
+	points := testpointsWithNames()
 	for _, p := range points {
 		x, y := p.X, p.Y
 		s.Point(x, y)
@@ -159,20 +134,7 @@ func TestSketcher_Text(t *testing.T) {
 func TestSketcher_PointWithLabel(t *testing.T) {
 	s := NewSketcher()
 
-	var points []struct {
-		X, Y float64
-		name string
-	} = []struct {
-		X, Y float64
-		name string
-	}{
-		{0.2, 0.2, "A"},
-		{0.3, 0.8, "B"},
-		{0.6, 0.6, "C"},
-		{0.8, 0.8, "D"},
-		{0.8, 0.2, "E"},
-	}
-
+	points := testpointsWithNames()
 	for _, p := range points {
 		s.PointWithLabel(p.X, p.Y, p.name)
 	}
@@ -187,13 +149,7 @@ func TestSketcher_BottomLeftCoordinateSystem(t *testing.T) {
 	cs := NewCoordSysBottomLeft(cnvwidth, cnvheight, xrange)
 	s := NewSketcher().WithCoordinateSystem(cs)
 
-	var points []struct{ X, Y float64 } = []struct{ X, Y float64 }{
-		{0.2, 0.2},
-		{0.3, 0.8},
-		{0.6, 0.6},
-		{0.8, 0.8},
-		{0.8, 0.2},
-	}
+	points := testpoints()
 	s.Polygon(points, true)
 
 	scaling := xrange
@@ -215,13 +171,7 @@ func TestSketcher_CenteredCoordinateSystem(t *testing.T) {
 	cs := NewCoordSysCentered(cnvwidth, cnvheight, xrange)
 	s := NewSketcher().WithCoordinateSystem(cs)
 
-	var points []struct{ X, Y float64 } = []struct{ X, Y float64 }{
-		{0.2, 0.2},
-		{0.3, 0.8},
-		{0.6, 0.6},
-		{0.8, 0.8},
-		{0.8, 0.2},
-	}
+	points := testpoints()
 	s.Polygon(points, true)
 
 	// Center symetry by Origin
@@ -237,13 +187,7 @@ func TestSketcher_CenteredCoordinateSystem(t *testing.T) {
 
 func TestSketcher_BoundedByCoordinateSystem(t *testing.T) {
 	cnvwidth := DefaultCanvasWidth
-	var points []struct{ X, Y float64 } = []struct{ X, Y float64 }{
-		{0.2, 0.2},
-		{0.3, 0.8},
-		{0.6, 0.6},
-		{0.8, 0.8},
-		{0.8, 0.2},
-	}
+	points := testpoints()
 	// translate points
 	tx := 10.
 	ty := -5.
