@@ -1,0 +1,261 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='480'>
+<rect width='1280' height='480' fill='white'/>
+<line x1='75.29' y1='0.00' x2='75.29' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='52.71' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='57.22' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F00</text>
+<line x1='150.59' y1='0.00' x2='150.59' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='128.00' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='132.52' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F01</text>
+<line x1='225.88' y1='0.00' x2='225.88' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='203.29' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='207.81' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F02</text>
+<line x1='301.18' y1='0.00' x2='301.18' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='278.59' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='283.11' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F03</text>
+<line x1='376.47' y1='0.00' x2='376.47' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='353.88' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='358.40' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F04</text>
+<line x1='451.76' y1='0.00' x2='451.76' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='429.18' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='433.69' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F05</text>
+<line x1='527.06' y1='0.00' x2='527.06' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='504.47' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='508.99' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F06</text>
+<line x1='602.35' y1='0.00' x2='602.35' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='579.76' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='584.28' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F07</text>
+<line x1='677.65' y1='0.00' x2='677.65' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='655.06' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='659.58' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F08</text>
+<line x1='752.94' y1='0.00' x2='752.94' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='730.35' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='734.87' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F09</text>
+<line x1='828.24' y1='0.00' x2='828.24' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='805.65' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='810.16' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F10</text>
+<line x1='903.53' y1='0.00' x2='903.53' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='880.94' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='885.46' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F11</text>
+<line x1='978.82' y1='0.00' x2='978.82' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='956.24' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='960.75' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F12</text>
+<line x1='1054.12' y1='0.00' x2='1054.12' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='1031.53' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1036.05' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F13</text>
+<line x1='1129.41' y1='0.00' x2='1129.41' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='1106.82' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1111.34' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F14</text>
+<line x1='1204.71' y1='0.00' x2='1204.71' y2='480.00' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='1182.12' y='0.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1186.64' y='27.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>F15</text>
+<line x1='0.00' y1='75.29' x2='1280.00' y2='75.29' style='stroke: #71797E; stroke-width: 2; fill: white'/>
+<rect x='0.00' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='4.52' y='79.81' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>S1</text>
+<rect x='52.71' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='57.22' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Mi3</text>
+<rect x='128.00' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='132.52' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa3</text>
+<rect x='203.29' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='207.81' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa#3</text>
+<rect x='278.59' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='283.11' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol3</text>
+<rect x='353.88' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='358.40' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol#3</text>
+<rect x='429.18' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='433.69' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La3</text>
+<rect x='504.47' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='508.99' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La#3</text>
+<rect x='579.76' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='584.28' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Si3</text>
+<rect x='655.06' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='659.58' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do4</text>
+<rect x='730.35' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='734.87' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do#4</text>
+<rect x='805.65' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='810.16' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Ré4</text>
+<rect x='880.94' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='885.46' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Re#4</text>
+<rect x='956.24' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='960.75' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Mi4</text>
+<rect x='1031.53' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1036.05' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa4</text>
+<rect x='1106.82' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1111.34' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa#4</text>
+<rect x='1182.12' y='52.71' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1186.64' y='79.81' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol4</text>
+<line x1='0.00' y1='150.59' x2='1280.00' y2='150.59' style='stroke: #71797E; stroke-width: 4; fill: white'/>
+<rect x='0.00' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='4.52' y='155.11' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>S2</text>
+<rect x='52.71' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='57.22' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Si2</text>
+<rect x='128.00' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='132.52' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do3</text>
+<rect x='203.29' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='207.81' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do#3</text>
+<rect x='278.59' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='283.11' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Ré3</text>
+<rect x='353.88' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='358.40' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Re#3</text>
+<rect x='429.18' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='433.69' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Mi3</text>
+<rect x='504.47' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='508.99' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa3</text>
+<rect x='579.76' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='584.28' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa#3</text>
+<rect x='655.06' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='659.58' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol3</text>
+<rect x='730.35' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='734.87' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol#3</text>
+<rect x='805.65' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='810.16' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La3</text>
+<rect x='880.94' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='885.46' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La#3</text>
+<rect x='956.24' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='960.75' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Si3</text>
+<rect x='1031.53' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1036.05' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do4</text>
+<rect x='1106.82' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1111.34' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do#4</text>
+<rect x='1182.12' y='128.00' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1186.64' y='155.11' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Ré4</text>
+<line x1='0.00' y1='225.88' x2='1280.00' y2='225.88' style='stroke: #71797E; stroke-width: 6; fill: white'/>
+<rect x='0.00' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='4.52' y='230.40' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>S3</text>
+<rect x='52.71' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='57.22' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol2</text>
+<rect x='128.00' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='132.52' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol#2</text>
+<rect x='203.29' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='207.81' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La2</text>
+<rect x='278.59' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='283.11' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La#2</text>
+<rect x='353.88' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='358.40' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Si2</text>
+<rect x='429.18' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='433.69' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do3</text>
+<rect x='504.47' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='508.99' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do#3</text>
+<rect x='579.76' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='584.28' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Ré3</text>
+<rect x='655.06' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='659.58' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Re#3</text>
+<rect x='730.35' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='734.87' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Mi3</text>
+<rect x='805.65' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='810.16' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa3</text>
+<rect x='880.94' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='885.46' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa#3</text>
+<rect x='956.24' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='960.75' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol3</text>
+<rect x='1031.53' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1036.05' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol#3</text>
+<rect x='1106.82' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1111.34' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La3</text>
+<rect x='1182.12' y='203.29' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1186.64' y='230.40' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La#3</text>
+<line x1='0.00' y1='301.18' x2='1280.00' y2='301.18' style='stroke: #71797E; stroke-width: 8; fill: white'/>
+<rect x='0.00' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='4.52' y='305.69' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>S4</text>
+<rect x='52.71' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='57.22' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Ré2</text>
+<rect x='128.00' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='132.52' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Re#2</text>
+<rect x='203.29' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='207.81' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Mi2</text>
+<rect x='278.59' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='283.11' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa2</text>
+<rect x='353.88' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='358.40' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa#2</text>
+<rect x='429.18' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='433.69' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol2</text>
+<rect x='504.47' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='508.99' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol#2</text>
+<rect x='579.76' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='584.28' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La2</text>
+<rect x='655.06' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='659.58' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La#2</text>
+<rect x='730.35' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='734.87' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Si2</text>
+<rect x='805.65' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='810.16' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do3</text>
+<rect x='880.94' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='885.46' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do#3</text>
+<rect x='956.24' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='960.75' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Ré3</text>
+<rect x='1031.53' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1036.05' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Re#3</text>
+<rect x='1106.82' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1111.34' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Mi3</text>
+<rect x='1182.12' y='278.59' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1186.64' y='305.69' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa3</text>
+<line x1='0.00' y1='376.47' x2='1280.00' y2='376.47' style='stroke: #71797E; stroke-width: 10; fill: white'/>
+<rect x='0.00' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='4.52' y='380.99' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>S5</text>
+<rect x='52.71' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='57.22' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La1</text>
+<rect x='128.00' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='132.52' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La#1</text>
+<rect x='203.29' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='207.81' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Si1</text>
+<rect x='278.59' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='283.11' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do2</text>
+<rect x='353.88' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='358.40' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do#2</text>
+<rect x='429.18' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='433.69' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Ré2</text>
+<rect x='504.47' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='508.99' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Re#2</text>
+<rect x='579.76' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='584.28' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Mi2</text>
+<rect x='655.06' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='659.58' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa2</text>
+<rect x='730.35' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='734.87' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa#2</text>
+<rect x='805.65' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='810.16' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol2</text>
+<rect x='880.94' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='885.46' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol#2</text>
+<rect x='956.24' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='960.75' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La2</text>
+<rect x='1031.53' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1036.05' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La#2</text>
+<rect x='1106.82' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1111.34' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Si2</text>
+<rect x='1182.12' y='353.88' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1186.64' y='380.99' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do3</text>
+<line x1='0.00' y1='451.76' x2='1280.00' y2='451.76' style='stroke: #71797E; stroke-width: 12; fill: white'/>
+<rect x='0.00' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='4.52' y='456.28' style='font-family:monospace; font-size:16; font-weight:bold; fill: orange'>S6</text>
+<rect x='52.71' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='57.22' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Mi1</text>
+<rect x='128.00' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='132.52' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa1</text>
+<rect x='203.29' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='207.81' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa#1</text>
+<rect x='278.59' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='283.11' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol1</text>
+<rect x='353.88' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='358.40' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol#1</text>
+<rect x='429.18' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='433.69' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La1</text>
+<rect x='504.47' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='508.99' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>La#1</text>
+<rect x='579.76' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='584.28' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Si1</text>
+<rect x='655.06' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='659.58' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do2</text>
+<rect x='730.35' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='734.87' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Do#2</text>
+<rect x='805.65' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='810.16' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Ré2</text>
+<rect x='880.94' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='885.46' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Ré#2</text>
+<rect x='956.24' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='960.75' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Mi2</text>
+<rect x='1031.53' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1036.05' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa2</text>
+<rect x='1106.82' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1111.34' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Fa#2</text>
+<rect x='1182.12' y='429.18' width='45.18' height='36.14' style='stroke: #71797E; stroke-width: 0; fill: white'/>
+<text x='1186.64' y='456.28' style='font-family:monospace; font-size:16; font-weight:normal; fill: black'>Sol2</text>
+</svg>

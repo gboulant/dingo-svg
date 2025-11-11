@@ -13,15 +13,15 @@ const (
 
 const (
 	// Constant for the drawing
-	defaultLineColor = "black"
-	defaultLineWidth = 2
-	defaultFillColor = "black"
-	defaultFillMode  = true
+	DefaultLineColor = "black"
+	DefaultLineWidth = 2
+	DefaultFillColor = "black"
+	DefaultFillMode  = true
 	// Constant for the text
-	defaultFontFamily = "Arial"
-	defaultFontWeight = "normal"
-	defaultFontSize   = 20
-	defaultFontColor  = "black"
+	DefaultFontFamily = "Arial"
+	DefaultFontWeight = "normal"
+	DefaultFontSize   = 20
+	DefaultFontColor  = "black"
 )
 
 type Pencil struct {
@@ -42,12 +42,12 @@ func NewPencil(linecolor string, linewidth int) *Pencil {
 	return &Pencil{
 		LineColor:  linecolor,
 		LineWidth:  linewidth,
-		FillColor:  defaultFillColor,
-		FillMode:   defaultFillMode,
-		FontFamily: defaultFontFamily,
-		FontWeight: defaultFontWeight,
-		FontSize:   defaultFontSize,
-		FontColor:  defaultFontColor,
+		FillColor:  DefaultFillColor,
+		FillMode:   DefaultFillMode,
+		FontFamily: DefaultFontFamily,
+		FontWeight: DefaultFontWeight,
+		FontSize:   DefaultFontSize,
+		FontColor:  DefaultFontColor,
 	}
 }
 
@@ -80,4 +80,4 @@ func (p Pencil) Clone() *Pencil {
 	}
 }
 
-var defaultPencil *Pencil = NewPencil(defaultLineColor, defaultLineWidth)
+var defaultPencil *Pencil = NewPencil(DefaultLineColor, DefaultLineWidth)
