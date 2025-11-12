@@ -4,7 +4,7 @@ This example creates a sketch of a guitar neck (with horizontal strings
 and vertical frets), on which are drawing all the notes for all
 the strings and all the frets of the guitar:
 
-![guitarneck](guitarneck.svg)
+![guitarneck](datafiles/guitarneck.svg)
 
 The data ore loaded from a CSV formated file whose cell (i,j)
 contains the note name of the string i+1, fret j. If j=0, it means the
@@ -14,7 +14,10 @@ You may also simply print the table using the `String()` function of the
 type `Notes`:
 
 ```go
-notes, _ := LoadNotes("guitarneck.csv")
+csvnamespath := "datafiles/guitarneck.names.csv"
+csvfreqspath := "datafiles/guitarneck.frequencies.csv"
+
+notes, _ := LoadNotesData(csvnamespath, csvfreqspath)
 fmt.Println(notes)
 ```
 

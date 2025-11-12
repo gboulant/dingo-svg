@@ -24,6 +24,6 @@ exec: build
 
 testall: test exec
 
-clean:
+clean::
 	@go clean
 	@rm -f output.*

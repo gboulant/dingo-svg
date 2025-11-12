@@ -33,14 +33,14 @@ func makesketch(notes Notes, svgpath string) error {
 	cs := svg.NewCoordSysTopLeft(cnvwidth, cnvheight, xrange)
 	sk := svg.NewSketcher().WithCoordinateSystem(cs).WithBackgroundColor("white")
 	sk.Pencil.FontFamily = "monospace"
-	sk.Pencil.FontSize = 16
+	sk.Pencil.FontSize = 18
 
 	xmin, xmax, ymin, ymax := sk.CoordinatesSystem().UserCoordinatesBoundaries()
 
 	var ys float64
 	var xf float64
 
-	sk.Pencil.LineColor = "#71797E"
+	sk.Pencil.LineColor = "lightgray"
 	sk.Pencil.FillColor = "white"
 	stringNotes := notes[0]
 	ys = xcellsize * 0.3
@@ -50,7 +50,7 @@ func makesketch(notes Notes, svgpath string) error {
 		note := stringNotes[j]
 		xf = xcellsize * float64(note.FretNumber+1)
 
-		sk.Pencil.LineWidth = 4
+		sk.Pencil.LineWidth = 1
 		vline(sk, xf, ymin, ymax)
 
 		sk.Pencil.LineWidth = 0
@@ -66,7 +66,7 @@ func makesketch(notes Notes, svgpath string) error {
 		stringNumber := stringNotes[0].StringNumber
 		ys = xcellsize * float64(stringNumber)
 
-		sk.Pencil.LineWidth = stringNumber * 2
+		sk.Pencil.LineWidth = 1
 		hline(sk, ys, xmin, xmax)
 
 		sk.Pencil.LineWidth = 0
@@ -74,6 +74,8 @@ func makesketch(notes Notes, svgpath string) error {
 		sk.Pencil.FontColor = "orange"
 		xf = xcellsize * 0.3
 		sk.Rectangle(xf-recsize*0.5, ys-recsize*0.5, recsize, recsize*0.8, true)
+
+		sk.Pencil.FontSize = 18
 		sk.Text(xf-recsize*0.4, ys+recsize*0.1, fmt.Sprintf("S%d", stringNumber))
 
 		sk.Pencil.FontColor = svg.DefaultFontColor
@@ -82,7 +84,11 @@ func makesketch(notes Notes, svgpath string) error {
 			note := stringNotes[j]
 			xf = xcellsize * float64(note.FretNumber+1)
 			sk.Rectangle(xf-recsize*0.5, ys-recsize*0.5, recsize, recsize*0.8, true)
+
+			sk.Pencil.FontSize = 18
 			sk.Text(xf-recsize*0.4, ys+recsize*0.1, note.Name)
+			sk.Pencil.FontSize = 12
+			sk.Text(xf-recsize*0.4, ys+recsize*0.4, note.Frequency)
 		}
 	}
 

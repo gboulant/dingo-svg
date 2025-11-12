@@ -4,8 +4,13 @@ import (
 	"fmt"
 )
 
+const (
+	csvnamespath = "datafiles/guitarneck.names.csv"
+	csvfreqspath = "datafiles/guitarneck.frequencies.csv"
+)
+
 func demo01_table() error {
-	notes, err := LoadNotes("guitarneck.csv")
+	notes, err := LoadNotesData(csvnamespath, csvfreqspath)
 	if err != nil {
 		return err
 	}
@@ -14,7 +19,7 @@ func demo01_table() error {
 }
 
 func demo02_sketch() error {
-	notes, err := LoadNotes("guitarneck.csv")
+	notes, err := LoadNotesData(csvnamespath, csvfreqspath)
 	if err != nil {
 		return err
 	}

@@ -6,6 +6,7 @@ type Note struct {
 	StringNumber int
 	FretNumber   int
 	Name         string
+	Frequency    string
 }
 
 type Notes [][]Note
@@ -46,19 +47,27 @@ func NewNotes(nbstrings, nbfrets int) Notes {
 	return notes
 }
 
-func LoadNotes(csvpath string) (Notes, error) {
-	records, err := loadrecords(csvpath)
+func LoadNotesData(csvnames string, csvfreqs string) (Notes, error) {
+	names, err := loadrecords(csvnames)
 	if err != nil {
 		return nil, err
 	}
-	header := records[0]
+	header := names[0]
 	nbfrets := len(header) - 1
-	nbstrings := len(records) - 1
+	nbstrings := len(names) - 1
 	notes := NewNotes(nbstrings, nbfrets)
+
+	freqs, err := loadrecords(csvfreqs)
+	if err != nil {
+		return nil, err
+	}
 
 	for i := range nbstrings {
 		for j := range nbfrets {
-			notes[i][j] = Note{StringNumber: i + 1, FretNumber: j, Name: records[i+1][j+1]}
+			notes[i][j] = Note{
+				StringNumber: i + 1, FretNumber: j,
+				Name:      names[i+1][j+1],
+				Frequency: freqs[i+1][j+1]}
 		}
 	}
 	return notes, nil
