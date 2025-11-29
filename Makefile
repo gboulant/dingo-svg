@@ -8,6 +8,7 @@ demos.%:
 	@make -C demos/d02.surface3d $*
 	@make -C demos/d03.remarkable $*
 	@make -C demos/d04.guitarneck $*
+	@make -C demos/d05.appartmap $*
 
 testall: test demos.testall
 

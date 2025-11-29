@@ -179,13 +179,8 @@ func (s *Sketcher) Quadrangle(x1, y1, x2, y2, x3, y3, x4, y4 float64, fill bool)
 }
 
 func (s *Sketcher) Rectangle(x, y, width, height float64, fill bool) {
-	px, py := s.canvasCoordinates(x, y)
-	pw := s.canvasScaling(width)
-	ph := s.canvasScaling(height)
-	style := s.Pencil.DrawStyleWithFillMode(fill)
-	s.body += fmt.Sprintf(rectPattern, px, py, pw, ph, style) + "\n" // this concatenation is time consuming
-	s.x = x
-	s.y = y
+	x2, y2 := x+width, y+height
+	s.Quadrangle(x, y, x2, y, x2, y2, x, y2, fill)
 }
 
 // Polygon draw a polygon, i.e. closed polyline defined by an ordered
