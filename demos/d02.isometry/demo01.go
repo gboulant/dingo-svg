@@ -2,8 +2,6 @@ package main
 
 import (
 	"math"
-
-	svg "github.com/gboulant/dingo-svg"
 )
 
 /*
@@ -15,44 +13,50 @@ Programing Language" from Donovan and Ritchie. See source code at:
 */
 
 const (
-	cells   = 100 // number of grid cells
-	xyrange = 1.0 // axis ranges (-xyrange..+xyrange)
+	cells = 80   // number of grid cells
+	xymax = 30.0 // axis ranges (-xymax..+xymax)
 )
 
-func corner(i, j int) (float64, float64) {
-	// Find point (x,y) at corner of cell (i,j).
-	x := xyrange * (float64(i)/cells - 0.5)
-	y := xyrange * (float64(j)/cells - 0.5)
-
-	// Compute surface height z.
-	z := f(x, y)
-
-	// Project (x,y,z) isometrically onto 2-D SVG canvas (sx,sy).
-	sx := 0.5 + (x-y)*cos30
-	sy := 0.5 + z*0.4 - (x+y)*sin30
-	return sx, sy
+func CardinalSine(period float64, amplitude float64) func(x, y float64) float64 {
+	factor := 2 * math.Pi / period
+	return func(x, y float64) float64 {
+		r := factor * math.Hypot(x, y) // distance from (0,0)
+		return amplitude * math.Sin(r) / r
+	}
 }
 
-func f(x, y float64) float64 {
-	a := 30.
-	r := math.Hypot(a*x, a*y) // distance from (0,0)
-	return math.Sin(r) / r
+var f func(x, y float64) float64
+
+func grid(i, j int) (x, y, z float64) {
+	// Find point (x,y) at corner of cell (i,j).
+	x = xymax * (float64(i)/cells - 0.5)
+	y = xymax * (float64(j)/cells - 0.5)
+	// Compute surface height z.
+	z = f(x, y)
+	return x, y, z
 }
 
 func demo01() error {
-	s := svg.NewSketcher()
-	s.Pencil.LineWidth = 1
-	s.Pencil.FillColor = "whitesmoke"
-	s.Pencil.LineColor = "gray"
+	xyrange := 2 * xymax
+	v := NewIsometricView(xyrange)
+
+	period := xymax / 4.     // spatial period of the cardinal sine
+	amplitude := 0.5 * xymax // amplitude of the cardianl sine
+	f = CardinalSine(period, amplitude)
 
 	for i := range cells {
 		for j := range cells {
-			ax, ay := corner(i+1, j)
-			bx, by := corner(i, j)
-			cx, cy := corner(i, j+1)
-			dx, dy := corner(i+1, j+1)
-			s.Quadrangle(ax, ay, bx, by, cx, cy, dx, dy, true)
+			ax, ay, az := grid(i+1, j)
+			bx, by, bz := grid(i, j)
+			cx, cy, cz := grid(i, j+1)
+			dx, dy, dz := grid(i+1, j+1)
+			v.DrawPolygon([][3]float64{
+				{ax, ay, az},
+				{bx, by, bz},
+				{cx, cy, cz},
+				{dx, dy, dz},
+			}, true)
 		}
 	}
-	return s.Save("output.demo01.svg")
+	return v.Save("output.demo01.svg")
 }
