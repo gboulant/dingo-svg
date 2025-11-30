@@ -1,5 +1,11 @@
 package main
 
+import (
+	"math"
+
+	svg "github.com/gboulant/dingo-svg"
+)
+
 /*
 This example is inspired from the example ch3/surface of the book "The Go
 Programing Language" from Donovan and Ritchie. See source code at:
@@ -8,20 +14,10 @@ Programing Language" from Donovan and Ritchie. See source code at:
 
 */
 
-import (
-	"log"
-	"math"
-
-	svg "github.com/gboulant/dingo-svg"
-)
-
 const (
-	cells   = 100         // number of grid cells
-	xyrange = 1.0         // axis ranges (-xyrange..+xyrange)
-	angle   = math.Pi / 6 // angle of x, y axes (=30°)
+	cells   = 100 // number of grid cells
+	xyrange = 1.0 // axis ranges (-xyrange..+xyrange)
 )
-
-var sin30, cos30 = math.Sin(angle), math.Cos(angle) // sin(30°), cos(30°)
 
 func corner(i, j int) (float64, float64) {
 	// Find point (x,y) at corner of cell (i,j).
@@ -43,7 +39,7 @@ func f(x, y float64) float64 {
 	return math.Sin(r) / r
 }
 
-func main() {
+func demo01() error {
 	s := svg.NewSketcher()
 	s.Pencil.LineWidth = 1
 	s.Pencil.FillColor = "whitesmoke"
@@ -58,7 +54,5 @@ func main() {
 			s.Quadrangle(ax, ay, bx, by, cx, cy, dx, dy, true)
 		}
 	}
-	if err := s.Save("output.surface3d.svg"); err != nil {
-		log.Fatal(err)
-	}
+	return s.Save("output.demo01.svg")
 }
