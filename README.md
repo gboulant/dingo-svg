@@ -10,7 +10,7 @@ Explore the demo examples:
 
 * [demos - d01.convexhull](demos/d01.convexhull): computation of a
   convex hull and visualisation in a SVG sketch;
-* [demos - d02.surface3d](demos/d02.surface3d): isometric view of a
+* [demos - d02.isometry](demos/d02.isometry): isometric view of a
   function $z=(x,y)$;
 * [demos - d03.remarkable](demos/d03.remarkable): drawing templates for
   the remarkable tablet;
