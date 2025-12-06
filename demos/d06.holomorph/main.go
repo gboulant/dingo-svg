@@ -27,6 +27,8 @@ func (g Grid) NodeCoordinates(i, j int) (x, y float64) {
 }
 
 // -----------------------------------------------------------
+// Set of holomorph complex functions
+
 func cmplx_square(z complex128) complex128 {
 	return z * z
 }
@@ -41,7 +43,32 @@ func cmplx_sine(z complex128) complex128 {
 	return cmplx.Sin(z)
 }
 
+func cmplx_inverse(z complex128) complex128 {
+	return 1 / z
+}
+
+// make_cmplx_spiral retourne une fonction qui applique une simple rotation mais
+// avec un angle d'autand plus grand que le point source est éloigné de
+// l'origine. Dans la pratique, l'angle de rotation est proportionnel au module.
+// On règle pour que la rotation des points éloignés de 1 soit de la valeur
+// spécifiée par le paramètre angle.
+func make_cmplx_spiral(angle float64) func(z complex128) complex128 {
+	return func(z complex128) complex128 {
+		r := cmplx.Abs(z)
+		a := r * angle
+		return z * cmplx.Exp(complex(0, a))
+	}
+}
+
+func cmplx_func01(z complex128) complex128 {
+	return z / (1 - z)
+}
+
 // -----------------------------------------------------------
+
+// TODO: la fonction DrawFunctionGrid n'est pas très modulaire. Prévoir un
+// ensemble plus modulaire de fonction, par exemple pour permettre d'afficher ou
+// non la grille source (sans avoirr à ajouter des if paramétrés)
 
 func DrawFunctionGrid(f func(z complex128) complex128, gridsize int, xymax float64) *svg.Sketcher {
 	g := Grid{size: gridsize, xymax: xymax}
@@ -189,10 +216,28 @@ func demo01() error {
 	s.Save("output.demo01.sine.svg")
 
 	gridsize = 20
+	xymax = 2.4
+	f = cmplx.Cos
+	s = DrawFunctionGrid(f, gridsize, xymax)
+	s.Save("output.demo01.cos.svg")
+
+	gridsize = 20
 	xymax = 4.
 	f = make_cmplx_rotation(math.Pi / 6)
 	s = DrawFunctionGrid(f, gridsize, xymax)
 	s.Save("output.demo01.rotation.svg")
+
+	gridsize = 20
+	xymax = 2.
+	f = make_cmplx_spiral(math.Pi / 6)
+	s = DrawFunctionGrid(f, gridsize, xymax)
+	s.Save("output.demo01.spiral.svg")
+
+	gridsize = 20
+	xymax = 0.5
+	f = cmplx_func01
+	s = DrawFunctionGrid(f, gridsize, xymax)
+	s.Save("output.demo01.func01.svg")
 
 	return nil
 }
